@@ -1,46 +1,25 @@
 {
-  "name": "anthropic-agent-skills",
+  "name": "salient-skills",
   "owner": {
-    "name": "Keith Lazuka",
-    "email": "klazuka@anthropic.com"
+    "name": "Alejandro Dinsmore",
+    "email": "alejandrodinsmore@gmail.com"
   },
   "metadata": {
-    "description": "Anthropic example skills",
+    "description": "Default skills plugin for salient-skills",
     "version": "1.0.0"
   },
   "plugins": [
     {
-      "name": "document-skills",
-      "description": "Collection of document processing suite including Excel, Word, PowerPoint, and PDF capabilities",
+      "name": "default-skills",
+      "description": "Core default skills for atlas maintenance, doc sync, skill creation, Slack GIF creation, and brand guidance",
       "source": "./",
       "strict": false,
       "skills": [
-        "./skills/xlsx",
-        "./skills/docx",
-        "./skills/pptx",
-        "./skills/pdf"
-      ]
-    },
-    {
-      "name": "example-skills",
-      "description": "Collection of example skills demonstrating various capabilities including skill creation, MCP building, visual design, algorithmic art, internal communications, web testing, artifact building, Slack GIFs, and theme styling",
-      "source": "./",
-      "strict": false,
-      "skills": [
-        "./skills/algorithmic-art",
-        "./skills/brand-guidelines",
-        "./skills/canvas-design",
-        "./skills/doc-coauthoring",
         "./skills/docs-sync",
-        "./skills/frontend-design",
-        "./skills/internal-comms",
-        "./skills/mcp-builder",
         "./skills/atlas",
         "./skills/skill-creator",
         "./skills/slack-gif-creator",
-        "./skills/theme-factory",
-        "./skills/web-artifacts-builder",
-        "./skills/webapp-testing"
+        "./skills/brand-guidelines"
       ]
     }
   ]
