@@ -1,0 +1,44 @@
+{
+  "name": "based-claude",
+  "version": "2.0.7",
+  "description": "Context-anchored memory layer for Claude Code - four anchors keep Claude oriented",
+  "bin": {
+    "based-claude": "./bin/based-claude"
+  },
+  "scripts": {
+    "postinstall": "bash ./cli/postinstall.sh 2>/dev/null || chmod +x ./bin/based-claude 2>/dev/null || true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aldinsmoresalient/based-claude.git"
+  },
+  "keywords": [
+    "claude",
+    "claude-code",
+    "ai",
+    "coding-assistant",
+    "memory",
+    "agent",
+    "developer-tools",
+    "context"
+  ],
+  "author": "aldinsmoresalient",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/aldinsmoresalient/based-claude/issues"
+  },
+  "homepage": "https://github.com/aldinsmoresalient/based-claude#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "os": [
+    "darwin",
+    "linux"
+  ],
+  "files": [
+    "bin/",
+    "cli/",
+    "README.md",
+    "LICENSE"
+  ]
+}
