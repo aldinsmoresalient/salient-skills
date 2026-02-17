@@ -22,20 +22,20 @@ Identify doc coverage gaps and inaccuracies by comparing main branch features an
    - If not on `main`: inventory only changes vs `main` (feature additions/changes/removals).
    - Focus on user-facing behavior: public exports, configuration options, environment variables, CLI commands, default values, and documented runtime behaviors.
    - Capture evidence for each item (file path + symbol/setting).
-   - Use targeted search to find option types and feature flags (for example: `rg "Settings"`, `rg "Config"`, `rg "os.environ"`, `rg "OPENAI_"`).
-   - When the topic involves OpenAI platform features, invoke `$openai-knowledge` to pull current details from the OpenAI Developer Docs MCP server instead of guessing, while treating the SDK source code as the source of truth when discrepancies appear.
+   - Use targeted search to find option types and feature flags (for example: `rg "Settings"`, `rg "Config"`, `rg "os.environ"`, `rg "process.env"`, `rg "FEATURE_"`).
+   - If external platform behavior affects docs accuracy (for example cloud APIs or third-party integrations), verify claims against the relevant official docs instead of guessing, while treating local source code as the source of truth for implementation details.
 
 3. Doc-first pass: review existing pages
    - Walk each relevant page under `docs/` (excluding `docs/ja`, `docs/ko`, and `docs/zh`).
-   - Identify missing mentions of important, supported options (opt-in flags, env vars), customization points, or new features from `src/agents/` and `examples/`.
+   - Identify missing mentions of important, supported options (opt-in flags, env vars), customization points, or new features from source directories (for example `src/`, `packages/`, `apps/`, `examples/`).
    - Propose additions where users would reasonably expect to find them on that page.
 
 4. Code-first pass: map features to docs
    - Review the current docs information architecture under `docs/` and `mkdocs.yml`.
-   - Determine the best page/section for each feature based on existing patterns and the API reference structure under `docs/ref`.
+   - Determine the best page/section for each feature based on existing patterns and, when present, any generated API reference structure (for example `docs/ref`).
    - Identify features that lack any doc page or have a page but no corresponding content.
    - Note when a structural adjustment would improve discoverability.
-   - When improving `docs/ref/*` pages, treat the corresponding docstrings/comments in `src/` as the source of truth. Prefer updating those code comments so regenerated reference docs stay correct, instead of hand-editing the generated pages.
+   - When improving generated reference docs, treat the corresponding source comments/docstrings as the source of truth. Prefer updating source comments so regenerated docs stay correct, instead of hand-editing generated output.
 
 5. Detect gaps and inaccuracies
    - **Missing**: features/configs present in main but absent in docs.
@@ -51,7 +51,7 @@ Identify doc coverage gaps and inaccuracies by comparing main branch features an
    - Do **not** edit `docs/ja`, `docs/ko`, or `docs/zh`.
    - Keep changes aligned with the existing docs style and navigation.
    - Update `mkdocs.yml` when adding or renaming pages.
-   - Build docs with `make build-docs` after edits to verify the docs site still builds.
+   - Build docs after edits using the repo's standard docs build command (for example `make build-docs`, `mkdocs build`, or `npm run docs:build`) to verify docs still build.
 
 ## Output format
 
