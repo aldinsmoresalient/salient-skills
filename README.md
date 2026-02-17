@@ -45,7 +45,7 @@ Alternatively, directly install:
 /plugin install default-skills@salient-skills
 ```
 
-After installing the plugin, you can use skills by mentioning them directly (for example `docs-sync`).
+After installing the plugin, you can use skills by mentioning them directly (for example `docs-sync` or `claude-md-improver`).
 
 ## Claude.ai
 

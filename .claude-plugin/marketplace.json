@@ -11,11 +11,12 @@
   "plugins": [
     {
       "name": "default-skills",
-      "description": "Core default skills for doc sync, skill creation, and Slack GIF creation",
+      "description": "Core default skills for doc sync, CLAUDE.md improvement, skill creation, and Slack GIF creation",
       "source": "./",
       "strict": false,
       "skills": [
         "./skills/docs-sync",
+        "./skills/claude-md-improver",
         "./skills/skill-creator",
         "./skills/slack-gif-creator"
       ]
