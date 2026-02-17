@@ -26,7 +26,7 @@ Many skills in this repo are open source (Apache 2.0). We've also included the d
 - [./spec](./spec): The Agent Skills specification
 - [./template](./template): Skill template
 
-# Try in Claude Code, Claude.ai, and the API
+# Try in Claude Code, Cursor, Claude.ai, and the API
 
 ## Claude Code
 You can register this repository as a Claude Code Plugin marketplace by running the following command in Claude Code:
@@ -46,6 +46,20 @@ Alternatively, directly install:
 ```
 
 After installing the plugin, you can use skills by mentioning them directly (for example `docs-sync` or `claude-md-improver`).
+
+## Cursor
+
+You can side-load this repository as a Cursor plugin:
+
+```
+/add-plugin https://github.com/aldinsmoresalient/salient-skills
+```
+
+This plugin exposes:
+- `docs-sync`
+- `claude-md-improver`
+- `skill-creator`
+- `slack-gif-creator`
 
 ## Claude.ai
 
