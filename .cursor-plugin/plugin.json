@@ -2,6 +2,7 @@
   "name": "salient-skills",
   "version": "1.0.0",
   "description": "Salient default agent skills for docs sync, CLAUDE.md maintenance, skill creation, and Slack GIF creation.",
+  "license": "MIT",
   "author": {
     "name": "Alejandro Dinsmore",
     "email": "alejandrodinsmore@gmail.com"
