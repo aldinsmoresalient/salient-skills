@@ -11,15 +11,13 @@
   "plugins": [
     {
       "name": "default-skills",
-      "description": "Core default skills for atlas maintenance, doc sync, skill creation, Slack GIF creation, and brand guidance",
+      "description": "Core default skills for doc sync, skill creation, and Slack GIF creation",
       "source": "./",
       "strict": false,
       "skills": [
         "./skills/docs-sync",
-        "./skills/atlas",
         "./skills/skill-creator",
-        "./skills/slack-gif-creator",
-        "./skills/brand-guidelines"
+        "./skills/slack-gif-creator"
       ]
     }
   ]
