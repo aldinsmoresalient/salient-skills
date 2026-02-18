@@ -1,6 +1,6 @@
 ---
 name: pptx
-description: "Presentation creation, editing, and analysis. When Claude needs to work with presentations (.pptx files) for: (1) Creating new presentations, (2) Modifying or editing content, (3) Working with layouts, (4) Adding comments or speaker notes, or any other presentation tasks"
+description: "Presentation creation, editing, and analysis. When Claude needs to work with presentations (.pptx files) for: (1) Creating new presentations, (2) Modifying or editing content, (3) Working with layouts, (4) Adding comments or speaker notes, or any other presentation tasks. Supports an optional Salient brand mode for on-brand presentations."
 license: Proprietary. LICENSE.txt has complete terms
 ---
 
@@ -9,6 +9,12 @@ license: Proprietary. LICENSE.txt has complete terms
 ## Overview
 
 A user may ask you to create, edit, or analyze the contents of a .pptx file. A .pptx file is essentially a ZIP archive containing XML files and other resources that you can read or edit. You have different tools and workflows available for different tasks.
+
+**MODE DETECTION**: If the user requests Salient-branded work (mentions "Salient brand", "on-brand",
+"Salient style", or requests work for Salient marketing/product), activate **Salient Brand Mode**.
+Follow all standard workflows below but apply the constraints from the
+[SALIENT BRAND MODE](#salient-brand-mode) section. If no Salient branding is requested,
+ignore the brand mode section entirely.
 
 ## Reading and analyzing content
 
@@ -463,6 +469,84 @@ Example for specific range:
 ```bash
 pdftoppm -jpeg -r 150 -f 2 -l 5 template.pdf slide  # Converts only pages 2-5
 ```
+
+---
+
+## SALIENT BRAND MODE
+
+When Salient Brand Mode is active, apply the following constraints on top of the standard pptx workflows. These override the generic design principles above when creating new presentations or editing existing ones for Salient.
+
+### Color Palette
+
+**Replace all generic palette selection** with the Salient palette:
+
+| Role | Color | Hex | Usage |
+|------|-------|-----|-------|
+| Main Cream | Workhorse Light | `#FAF6F2` | ~80% of slides — body slides, readable backgrounds |
+| Secondary Cream | Impact Secondary | `#F6F0E9` | ~15% — cards, data-heavy sections, depth areas |
+| Charcoal | Momentum Dark | `#0F0F0F` | ~5% — transition slides, "The Big Ask", high-impact moments |
+| Gold | Accent | `#C9A962` | CTAs, numbered circles, borders, highlights, badges |
+| Positive | Indicator | `#34C759` | Positive metrics only (prefix with `+`) |
+| Negative | Indicator | `#FF3B30` | Negative metrics only (prefix with `−`) |
+
+- No off-palette colors unless they are subtle tints from blending base colors.
+- Default text color: Charcoal `#0F0F0F` on cream backgrounds, white `#FFFFFF` on charcoal backgrounds.
+
+### Typography
+
+**Override the web-safe font requirement** when in brand mode:
+
+- **Display / Headlines**: Halant (serif). Keep headlines tall and tight with line-height 0.9–0.95. Use for title slides, section headers, and transition slides. Available weights: Light, Regular, Bold.
+- **Body / UI**: Geist (sans-serif). Default size 14–16px, minimum 12px. Use for body copy, bullets, labels, data tables, and speaker notes. Available weights: Regular, Bold.
+- Never use Halant for body copy. Never use Geist for display headlines.
+- When embedding fonts via html2pptx, register Halant and Geist TTF files using `@font-face` in the HTML.
+- For template-based editing, update the theme fonts in `ppt/theme/theme1.xml` to reference Halant and Geist.
+
+### Slide Type Matrix
+
+Use this matrix to guide slide design in brand mode:
+
+| Slide Type | Background | Typography | Layout | Purpose |
+|---|---|---|---|---|
+| Title | Main Cream | Halant 120pt centered | Full-width, generous padding | High-impact opening |
+| Transition | Charcoal `#0F0F0F` | Halant 80pt, white text | Centered, minimal | Reset before new topic |
+| Data / ROI | Secondary Cream | Geist Bold labels, large metrics | 3-column grid | Prove value with numbers |
+| Feature | Main Cream | Halant 60pt + Geist body | 70/30 visual-to-benefit split | Explain capabilities |
+| Process | Main Cream | Geist 14pt | Vertical timeline | "How it works" clearly |
+| Closing | Main Cream | Halant 60pt + Gold CTA button | Centered + contact info | Memorable finish |
+
+### Visual Language
+
+- **Badge on every slide**: Include a feature/category badge for navigation context (Gold accent or charcoal pill).
+- **Warm radial glows**: Use as background accents on cream slides — subtle, not overpowering.
+- **Floating elements**: Decorative dots, circles, or abstract shapes at reduced opacity for depth.
+- **Gold gradients**: Use gold-to-transparent gradients for accent bars, dividers, or highlight areas.
+- **Rounded forms**: 24px corner radius on all cards, containers, and image frames.
+- **No glassmorphism on cream**: Glass/blur effects only on Charcoal background slides.
+- **Buttons/CTAs**: Gold fill with pill shape (fully rounded corners), white or charcoal text.
+
+### Layout Rules
+
+- **Safe zone**: 5% padding on all edges — nothing touches the slide boundary.
+- **Corner radius**: 24px on all rounded elements.
+- **Negative space = premium**: If a slide feels busy, increase padding between title and body.
+- **Feature split**: 70/30 visual-to-benefit ratio on feature slides.
+- Metric displays should be large, bold, and scannable (Geist Bold, oversized numbers).
+
+### QA Checklist (apply after visual validation)
+
+Before finalizing brand mode presentations, verify each item:
+
+1. **Typography**: Halant for all display/headlines, Geist for all body/labels — no substitutions.
+2. **Color**: Salient palette only, correct distribution (~80% cream, ~15% secondary, ~5% charcoal, gold accents).
+3. **Layout**: 5% safe zone on all slides, 24px corner radii consistent.
+4. **Badges**: Feature/category badge present on every slide.
+5. **Visual language**: At least 2 brand visual elements across the deck (warm glow, floating elements, gold gradient, rounded forms).
+6. **Contrast**: Text readable on all backgrounds — charcoal on cream, white on charcoal.
+7. **Tone**: If the deck includes copy, verify it uses specific compliance-aware language (not hype). Lead with customer outcomes, not company claims.
+8. **Overall impression**: Premium, warm, trustworthy — not cold, not generic-startup.
+
+---
 
 ## Code Style Guidelines
 **IMPORTANT**: When generating code for PPTX operations:

@@ -1,10 +1,16 @@
 ---
 name: canvas-design
-description: Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations.
+description: Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations. Supports an optional Salient brand mode for on-brand visual work.
 license: Complete terms in LICENSE.txt
 ---
 
 These are instructions for creating design philosophies - aesthetic movements that are then EXPRESSED VISUALLY. Output only .md files, .pdf files, and .png files.
+
+**MODE DETECTION**: If the user requests Salient-branded work (mentions "Salient brand", "on-brand",
+"Salient style", or requests work for Salient marketing/product), activate **Salient Brand Mode**.
+Follow the standard two-step process below but apply the constraints from the
+[SALIENT BRAND MODE](#salient-brand-mode) section at each step. If no Salient branding is requested,
+ignore the brand mode section entirely.
 
 Complete this in two steps:
 1. Design Philosophy Creation (.md file)
@@ -114,6 +120,62 @@ To push boundaries, follow design instinct/intuition while using the philosophy 
 **CRITICAL**: To achieve human-crafted quality (not AI-generated), create work that looks like it took countless hours. Make it appear as though someone at the absolute top of their field labored over every detail with painstaking care. Ensure the composition, spacing, color choices, typography - everything screams expert-level craftsmanship. Double-check that nothing overlaps, formatting is flawless, every detail perfect. Create something that could be shown to people to prove expertise and rank as undeniably impressive.
 
 Output the final result as a single, downloadable .pdf or .png file, alongside the design philosophy used as a .md file.
+
+---
+
+## SALIENT BRAND MODE
+
+When Salient Brand Mode is active, apply the following constraints on top of the standard process. The creative ambition and craftsmanship expectations remain identical — only the visual vocabulary is constrained.
+
+### Philosophy Creation Override
+
+When generating the design philosophy in brand mode:
+
+- **Name the movement** using warmth/precision language (e.g., "Warm Precision", "Cream Architecture", "Golden Clarity", "Luminous Order"). The name should evoke sophistication and warmth, not cold minimalism.
+- **Constrain the visual vocabulary** to the Salient palette and language:
+  - Main Cream `#FAF6F2` (~80% of the composition)
+  - Secondary Cream `#F6F0E9` (~15%, cards and depth areas)
+  - Charcoal `#0F0F0F` (~5%, impact moments)
+  - Gold `#C9A962` (accents, highlights, gradient anchors)
+- **Typography direction**: Specify Halant (display serif from `./canvas-fonts`) for headlines and display text, and Geist (sans-serif from `./canvas-fonts`) for body and UI text. Never reverse these roles.
+- **Visual language**: Direct the philosophy toward warm radial glows, floating elements, gold/amber gradients, particle dots, rounded geometric forms, and subtle grid patterns. These are the brand's visual signatures.
+- **Layout sensibility**: Emphasize generous negative space, 5% safe zones on all edges, and 24px corner radii as foundational to the aesthetic.
+- Still write 4-6 paragraphs. Still emphasize painstaking craftsmanship. The palette is constrained — the ambition is not.
+
+### Canvas Creation Constraints
+
+When creating the canvas in brand mode, enforce these hard rules alongside the standard canvas creation instructions:
+
+**Color execution:**
+- Use only the Salient palette: `#FAF6F2`, `#F6F0E9`, `#0F0F0F`, `#C9A962`.
+- No off-palette colors unless they are subtle tints derived from blending base colors (e.g., a cream-to-gold gradient midpoint).
+- Maintain the distribution: ~80% Main Cream, ~15% Secondary Cream, ~5% Charcoal, Gold for accents.
+
+**Typography execution:**
+- Halant (from `./canvas-fonts/Halant-*.ttf`) for all headlines and display text. Line-height: 0.9–0.95. Keep headlines tall and tight.
+- Geist (from `./canvas-fonts/Geist-*.ttf`) for all body, label, and UI text. Default size 14–16px, minimum 12px.
+- Never use Halant for body copy. Never use Geist for display headlines.
+- Other canvas-fonts remain available for artistic accent text (e.g., a single decorative word), but Halant and Geist must dominate.
+
+**Visual language execution:**
+- Include at least 2 of: warm radial glows, floating elements, gold/amber gradients, particle dots, rounded geometric forms, subtle grid patterns.
+- No glassmorphism on cream backgrounds — glass effects are dark-mode only (Charcoal surfaces).
+- Buttons and CTAs use Gold with pill/rounded shapes.
+
+**Layout execution:**
+- 5% safe zone on all edges — nothing touches the canvas boundary.
+- 24px corner radius on all rounded elements (cards, containers, buttons).
+- Premium negative space: if the composition feels busy, increase padding. White space is a feature of the brand.
+
+### QA Checklist (apply during FINAL STEP)
+
+Before finalizing brand mode work, verify each item:
+
+1. **Typography**: Halant for display / Geist for body — no substitutions or role reversals.
+2. **Color**: Salient palette only (`#FAF6F2`, `#F6F0E9`, `#0F0F0F`, `#C9A962`), correct distribution ratios.
+3. **Layout**: 5% safe zone respected, 24px corner radii consistent.
+4. **Visual language**: At least 2 brand visual elements present (warm glow, particles, gold gradient, floating elements, rounded forms, grid pattern).
+5. **Overall impression**: The work feels premium, warm, and trustworthy — not cold, not generic-startup, not over-decorated.
 
 ---
 

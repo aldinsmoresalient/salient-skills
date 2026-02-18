@@ -1,6 +1,6 @@
 ---
 name: pdf
-description: Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms. When Claude needs to fill in a PDF form or programmatically process, generate, or analyze PDF documents at scale.
+description: Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms. When Claude needs to fill in a PDF form or programmatically process, generate, or analyze PDF documents at scale. Supports an optional Salient brand mode for on-brand PDF creation.
 license: Proprietary. LICENSE.txt has complete terms
 ---
 
@@ -9,6 +9,12 @@ license: Proprietary. LICENSE.txt has complete terms
 ## Overview
 
 This guide covers essential PDF processing operations using Python libraries and command-line tools. For advanced features, JavaScript libraries, and detailed examples, see reference.md. If you need to fill out a PDF form, read forms.md and follow its instructions.
+
+**MODE DETECTION**: If the user requests Salient-branded work (mentions "Salient brand", "on-brand",
+"Salient style", or requests work for Salient marketing/product), activate **Salient Brand Mode**.
+Follow all standard workflows below but apply the constraints from the
+[SALIENT BRAND MODE](#salient-brand-mode) section when creating new PDFs. If no Salient branding
+is requested, ignore the brand mode section entirely.
 
 ## Quick Start
 
@@ -272,6 +278,68 @@ writer.encrypt("userpassword", "ownerpassword")
 with open("encrypted.pdf", "wb") as output:
     writer.write(output)
 ```
+
+---
+
+## SALIENT BRAND MODE
+
+When Salient Brand Mode is active, apply the following constraints when creating new PDFs with reportlab or any other PDF creation library. These rules do not apply to read-only operations (extraction, analysis, splitting, merging).
+
+### Color Palette
+
+Use only the Salient palette:
+
+| Role | Hex | RGB | Usage |
+|------|-----|-----|-------|
+| Main Cream | `#FAF6F2` | (250, 246, 242) | ~80% — page backgrounds, primary surface |
+| Secondary Cream | `#F6F0E9` | (246, 240, 233) | ~15% — cards, sidebars, callout boxes |
+| Charcoal | `#0F0F0F` | (15, 15, 15) | ~5% — headers, section dividers, high-impact areas |
+| Gold | `#C9A962` | (201, 169, 98) | Accents — rules, highlights, icons, borders |
+| Positive | `#34C759` | (52, 199, 89) | Positive metrics only |
+| Negative | `#FF3B30` | (255, 59, 48) | Negative metrics only |
+
+- No off-palette colors unless subtle tints from blending base colors.
+- Default text color: Charcoal on cream backgrounds, white on charcoal backgrounds.
+
+### Typography
+
+Register and use Halant and Geist fonts with reportlab:
+
+```python
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+
+# Register Salient brand fonts (adjust paths as needed)
+pdfmetrics.registerFont(TTFont('Halant', 'Halant-Regular.ttf'))
+pdfmetrics.registerFont(TTFont('Halant-Bold', 'Halant-Bold.ttf'))
+pdfmetrics.registerFont(TTFont('Halant-Light', 'Halant-Light.ttf'))
+pdfmetrics.registerFont(TTFont('Geist', 'Geist-Regular.ttf'))
+pdfmetrics.registerFont(TTFont('Geist-Bold', 'Geist-Bold.ttf'))
+```
+
+- **Halant** for all headlines, titles, and display text. Line-height: 0.9–0.95 of font size.
+- **Geist** for all body copy, labels, captions, and table text. Default 10–12pt, minimum 8pt.
+- Never use Halant for body copy. Never use Geist for headlines.
+
+### Layout Rules
+
+- **Safe zone**: 5% margin on all edges (e.g., ~36pt on letter-size pages).
+- **Corner radius**: 24pt on all rounded rectangles, cards, and containers.
+- **Negative space**: Generous padding between sections. White space is a brand feature.
+- **Visual language**: Where appropriate, include warm radial glows (gradient circles), gold accent lines, or subtle dot patterns as decorative elements.
+- **No glassmorphism on cream**: Transparency/blur effects only on charcoal surfaces.
+
+### QA Checklist
+
+Before finalizing brand mode PDFs, verify:
+
+1. **Typography**: Halant for display / Geist for body — no substitutions.
+2. **Color**: Salient palette only, correct distribution ratios.
+3. **Layout**: 5% safe zone respected, 24pt corner radii consistent.
+4. **Visual language**: At least 1 brand visual element present (gold accent, warm gradient, dot pattern).
+5. **Overall impression**: Premium, warm, trustworthy — not cold or generic.
+
+---
 
 ## Quick Reference
 
