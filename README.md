@@ -1,79 +1,77 @@
-> **Note:** This repository contains Anthropic's implementation of skills for Claude. For information about the Agent Skills standard, see [agentskills.io](http://agentskills.io).
+# salient-skills
 
-# Skills
-Skills are folders of instructions, scripts, and resources that Claude loads dynamically to improve performance on specialized tasks. Skills teach Claude how to complete specific tasks in a repeatable way, whether that's creating documents with your company's brand guidelines, analyzing data using your organization's specific workflows, or automating personal tasks.
+A [Claude Code plugin](https://code.claude.com/docs/en/plugins) with skills for doc sync, CLAUDE.md improvement, skill creation, design, document generation, and Slack GIF creation. Built on the [Agent Skills](https://agentskills.io) open standard.
 
-For more information, check out:
+## About
+
+Skills are folders of instructions, scripts, and resources that Claude loads dynamically to improve performance on specialized tasks. Each skill is self-contained with a `SKILL.md` file containing YAML frontmatter and markdown instructions.
+
+For more information:
 - [What are skills?](https://support.claude.com/en/articles/12512176-what-are-skills)
 - [Using skills in Claude](https://support.claude.com/en/articles/12512180-using-skills-in-claude)
 - [How to create custom skills](https://support.claude.com/en/articles/12512198-creating-custom-skills)
 - [Equipping agents for the real world with Agent Skills](https://anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)
 
-# About This Repository
+## Plugin Manifest
 
-This repository contains skills that demonstrate what's possible with Claude's skills system. These skills range from creative applications (art, music, design) to technical tasks (testing web apps, MCP server generation) to enterprise workflows (communications, branding, etc.).
+The plugin manifest at `.claude-plugin/plugin.json` declares all metadata per the [plugin reference spec](https://code.claude.com/docs/en/plugins-reference):
 
-Each skill is self-contained in its own folder with a `SKILL.md` file containing the instructions and metadata that Claude uses. Browse through these skills to get inspiration for your own skills or to understand different patterns and approaches.
+| Field | Value |
+|-------|-------|
+| **name** | `salient-skills` |
+| **version** | `1.0.0` |
+| **license** | MIT |
+| **author** | Alejandro Dinsmore |
+| **skills** | `./skills/` (auto-discovered) |
+| **keywords** | skills, claude-code, docs-sync, design, pdf, pptx, slack-gif, claude-md |
 
-Many skills in this repo are open source (Apache 2.0). We've also included the document creation & editing skills that power [Claude's document capabilities](https://www.anthropic.com/news/create-files) under the hood in the [`skills/docx`](./skills/docx), [`skills/pdf`](./skills/pdf), [`skills/pptx`](./skills/pptx), and [`skills/xlsx`](./skills/xlsx) subfolders. These are source-available, not open source, but we wanted to share these with developers as a reference for more complex skills that are actively used in a production AI application.
-
-## Disclaimer
-
-**These skills are provided for demonstration and educational purposes only.** While some of these capabilities may be available in Claude, the implementations and behaviors you receive from Claude may differ from what is shown in these skills. These skills are meant to illustrate patterns and possibilities. Always test skills thoroughly in your own environment before relying on them for critical tasks.
-
-# Skill Sets
-- [./skills](./skills): Skill examples for Creative & Design, Development & Technical, Enterprise & Communication, and Document Skills
-- [./spec](./spec): The Agent Skills specification
-- [./template](./template): Skill template
-
-# Try in Claude Code, Cursor, Claude.ai, and the API
-
-## Claude Code
-You can register this repository as a Claude Code Plugin marketplace by running the following command in Claude Code:
-```
-/plugin marketplace add aldinsmoresalient/salient-skills
-```
-
-Then, to install a specific set of skills:
-1. Select `Browse and install plugins`
-2. Select `salient-skills`
-3. Select `default-skills`
-4. Select `Install now`
-
-Alternatively, directly install:
-```
-/plugin install default-skills@salient-skills
-```
-
-After installing the plugin, you can use skills by mentioning them directly (for example `docs-sync` or `claude-md-improver`).
-
-## Cursor
-
-You can side-load this repository as a Cursor plugin:
+## Plugin Structure
 
 ```
-/add-plugin https://github.com/aldinsmoresalient/salient-skills
+salient-skills/
+├── .claude-plugin/
+│   └── plugin.json          # Plugin manifest
+├── skills/                  # Skills directory (auto-discovered)
+│   ├── brand-design/        # Brand design direction and guidelines
+│   ├── canvas-design/       # Museum-quality visual art and design
+│   ├── claude-md-improver/  # Audit and improve CLAUDE.md files
+│   ├── docs-sync/           # Sync documentation with code
+│   ├── frontend-design/     # Production-grade web interfaces
+│   ├── pdf/                 # PDF manipulation and creation
+│   ├── pptx/                # PowerPoint creation and editing
+│   ├── skill-creator/       # Guide for creating new skills
+│   └── slack-gif-creator/   # Animated GIFs for Slack
+├── README.md
+└── THIRD_PARTY_NOTICES.md
 ```
 
-This plugin exposes:
-- `docs-sync`
-- `claude-md-improver`
-- `skill-creator`
-- `slack-gif-creator`
+## Installation
 
-## Claude.ai
+### Claude Code
 
-These example skills are all already available to paid plans in Claude.ai. 
+Install this plugin in Claude Code:
+```
+claude plugin add /path/to/salient-skills
+```
 
-To use any skill from this repository or upload custom skills, follow the instructions in [Using skills in Claude](https://support.claude.com/en/articles/12512180-using-skills-in-claude#h_a4222fa77b).
+Or test locally during development:
+```
+claude --plugin-dir ./salient-skills
+```
 
-## Claude API
+After installing, skills are auto-discovered from `./skills/`. Use them by mentioning them directly (e.g. `docs-sync` or `claude-md-improver`).
 
-You can use Anthropic's pre-built skills, and upload custom skills, via the Claude API. See the [Skills API Quickstart](https://docs.claude.com/en/api/skills-guide#creating-a-skill) for more.
+### Claude.ai
 
-# Creating a Basic Skill
+These example skills are available to paid plans in Claude.ai. See [Using skills in Claude](https://support.claude.com/en/articles/12512180-using-skills-in-claude#h_a4222fa77b).
 
-Skills are simple to create - just a folder with a `SKILL.md` file containing YAML frontmatter and instructions. You can use the **template-skill** in this repository as a starting point:
+### Claude API
+
+Use Anthropic's pre-built skills or upload custom skills via the API. See the [Skills API Quickstart](https://docs.claude.com/en/api/skills-guide#creating-a-skill).
+
+## Creating a Skill
+
+A skill is a directory with a `SKILL.md` containing YAML frontmatter and instructions:
 
 ```markdown
 ---
@@ -83,25 +81,19 @@ description: A clear description of what this skill does and when to use it
 
 # My Skill Name
 
-[Add your instructions here that Claude will follow when this skill is active]
-
-## Examples
-- Example usage 1
-- Example usage 2
-
-## Guidelines
-- Guideline 1
-- Guideline 2
+Instructions, examples, and guidelines that Claude will follow.
 ```
 
-The frontmatter requires only two fields:
-- `name` - A unique identifier for your skill (lowercase, hyphens for spaces)
-- `description` - A complete description of what the skill does and when to use it
+The frontmatter requires two fields:
+- `name` — unique identifier (lowercase, hyphens for spaces, must match directory name)
+- `description` — what the skill does and when to use it
 
-The markdown content below contains the instructions, examples, and guidelines that Claude will follow. For more details, see [How to create custom skills](https://support.claude.com/en/articles/12512198-creating-custom-skills).
+For details, see [How to create custom skills](https://support.claude.com/en/articles/12512198-creating-custom-skills).
 
-# Partner Skills
+## Disclaimer
 
-Skills are a great way to teach Claude how to get better at using specific pieces of software. As we see awesome example skills from partners, we may highlight some of them here:
+**These skills are provided for demonstration and educational purposes only.** Implementations and behaviors may differ from what is shown. Test thoroughly in your own environment before relying on them for critical tasks.
 
-- **Notion** - [Notion Skills for Claude](https://www.notion.so/notiondevs/Notion-Skills-for-Claude-28da4445d27180c7af1df7d8615723d0)
+## License
+
+MIT. Some skills (pdf, pptx) are source-available under their own license terms — see individual `LICENSE.txt` files.
