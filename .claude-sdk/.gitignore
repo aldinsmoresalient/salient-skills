@@ -1,6 +1,0 @@
-# Claude Code SDK
-# By default, memory files are NOT ignored (they should be versioned)
-# Uncomment below to exclude specific files from version control
-
-# .backups/
-# *.bak
