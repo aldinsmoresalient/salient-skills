@@ -49,6 +49,11 @@ Use specific, exam-ready language:
 - Momentum Dark: Charcoal (~5%)
 - Use Gold sparingly to signal action and priority.
 
+### Text Color Rules
+- Default on cream backgrounds: Charcoal `#0F0F0F`
+- Default on charcoal backgrounds: White `#FFFFFF`
+- No off-palette text colors unless they are subtle tints from blending base colors.
+
 ## 3) Typography System
 
 ### Display Typeface: Halant
@@ -65,8 +70,9 @@ Use specific, exam-ready language:
 ## 4) Component and Visual Language Rules
 
 ### Buttons
-- Primary CTA style: Gold.
-- Pill shape with very rounded corners (100px feel).
+- Two variants: Primary (charcoal fill) and Gold CTA (gold `#C9A962` fill).
+- Pill shape with fully rounded corners (100px radius).
+- Text: white or charcoal depending on fill contrast.
 
 ### Badges
 - Include a feature/category badge consistently across slides when building decks.
