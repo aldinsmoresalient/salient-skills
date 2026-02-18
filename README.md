@@ -30,7 +30,8 @@ The plugin manifest at `.claude-plugin/plugin.json` declares all metadata per th
 ```
 salient-skills/
 ├── .claude-plugin/
-│   └── plugin.json          # Plugin manifest
+│   ├── plugin.json          # Plugin manifest
+│   └── marketplace.json     # Marketplace manifest (for side-loading)
 ├── skills/                  # Skills directory (auto-discovered)
 │   ├── brand-design/        # Brand design direction and guidelines
 │   ├── canvas-design/       # Museum-quality visual art and design
@@ -47,9 +48,17 @@ salient-skills/
 
 ## Installation
 
-### Claude Code
+### Claude Code (marketplace)
 
-Install this plugin in Claude Code:
+Register the marketplace and install:
+```
+/plugin marketplace add aldinsmoresalient/salient-skills
+/plugin install default-skills@salient-skills
+```
+
+### Claude Code (direct)
+
+Install as a plugin directly:
 ```
 claude plugin add /path/to/salient-skills
 ```

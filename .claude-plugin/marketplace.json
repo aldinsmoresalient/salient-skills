@@ -1,0 +1,30 @@
+{
+  "name": "salient-skills",
+  "owner": {
+    "name": "Alejandro Dinsmore",
+    "email": "alejandrodinsmore@gmail.com"
+  },
+  "metadata": {
+    "description": "Salient skills marketplace for Claude Code",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "default-skills",
+      "description": "Core skills for doc sync, CLAUDE.md improvement, skill creation, design, document generation, and Slack GIF creation",
+      "version": "1.0.0",
+      "strict": false,
+      "skills": [
+        "./skills/brand-design",
+        "./skills/canvas-design",
+        "./skills/claude-md-improver",
+        "./skills/docs-sync",
+        "./skills/frontend-design",
+        "./skills/pdf",
+        "./skills/pptx",
+        "./skills/skill-creator",
+        "./skills/slack-gif-creator"
+      ]
+    }
+  ]
+}
