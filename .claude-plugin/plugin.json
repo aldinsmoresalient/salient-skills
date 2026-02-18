@@ -19,6 +19,5 @@
     "pptx",
     "slack-gif",
     "claude-md"
-  ],
-  "skills": "./skills/"
+  ]
 }

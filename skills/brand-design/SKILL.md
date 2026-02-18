@@ -8,7 +8,6 @@ description: Create on-brand design direction and production-ready visual/copy g
 This skill translates Salient's brand rules into concrete output decisions for slides, web pages, one-pagers, sales collateral, and copy edits. Prioritize precision and consistency over novelty.
 
 Read `references/salient-brand-guidelines.md` before generating or revising deliverables.
-If exact wording/layout evidence is needed, consult `references/salient-brand-guidelines-source.pdf`.
 
 ## Workflow
 
