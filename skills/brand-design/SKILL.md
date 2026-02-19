@@ -1,6 +1,6 @@
 ---
 name: brand-design
-description: Create on-brand visual design, layout, and copy for Salient marketing and product artifacts. Use this skill when users ask for brand styling, visual design, slide decks, web layouts, component design, color/typography direction, creative direction, tone of voice rewrites, design QA, or any work that must follow Salient brand standards. Covers the full visual system including color strategy, typography pairing, component library, dark mode rules, layout constraints, and slide architecture.
+description: Apply Salient's visual identity and brand guidelines to design and copy. Use when asked for brand styling, slide decks, web layouts, component design, color/typography direction, marketing collateral, tone of voice rewrites, or design QA following Salient brand standards.
 ---
 
 # Brand Design

@@ -1,50 +1,24 @@
-# salient-skills
+# salient-product-skills
 
-A [Claude Code plugin](https://code.claude.com/docs/en/plugins) with skills for doc sync, CLAUDE.md improvement, skill creation, design, document generation, and Slack GIF creation. Built on the [Agent Skills](https://agentskills.io) open standard.
+A [Claude Code plugin](https://code.claude.com/docs/en/plugins) with skills for design, documentation, and developer tooling. Built on the [Agent Skills](https://agentskills.io) open standard.
 
-## About
+## Skills
 
-Skills are folders of instructions, scripts, and resources that Claude loads dynamically to improve performance on specialized tasks. Each skill is self-contained with a `SKILL.md` file containing YAML frontmatter and markdown instructions.
+### Design & Creative
 
-For more information:
-- [What are skills?](https://support.claude.com/en/articles/12512176-what-are-skills)
-- [Using skills in Claude](https://support.claude.com/en/articles/12512180-using-skills-in-claude)
-- [How to create custom skills](https://support.claude.com/en/articles/12512198-creating-custom-skills)
-- [Equipping agents for the real world with Agent Skills](https://anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)
+| Skill | Description |
+|-------|-------------|
+| **brand-design** | Apply Salient's visual identity and brand guidelines to design and copy |
+| **frontend-design** | Create distinctive, production-grade frontend interfaces with high design quality |
+| **slack-gif-creator** | Create animated GIFs optimized for Slack with proper dimensions and file sizes |
 
-## Plugin Manifest
+### Documentation & Developer Tools
 
-The plugin manifest at `.claude-plugin/plugin.json` declares all metadata per the [plugin reference spec](https://code.claude.com/docs/en/plugins-reference):
-
-| Field | Value |
-|-------|-------|
-| **name** | `salient-skills` |
-| **version** | `1.0.0` |
-| **license** | MIT |
-| **author** | Alejandro Dinsmore |
-| **skills** | `./skills/` (auto-discovered) |
-| **keywords** | skills, claude-code, docs-sync, design, pdf, pptx, slack-gif, claude-md |
-
-## Plugin Structure
-
-```
-salient-skills/
-├── .claude-plugin/
-│   ├── plugin.json          # Plugin manifest
-│   └── marketplace.json     # Marketplace manifest (for side-loading)
-├── skills/                  # Skills directory (auto-discovered)
-│   ├── brand-design/        # Brand design direction and guidelines
-│   ├── canvas-design/       # Museum-quality visual art and design
-│   ├── claude-md-improver/  # Audit and improve CLAUDE.md files
-│   ├── docs-sync/           # Sync documentation with code
-│   ├── frontend-design/     # Production-grade web interfaces
-│   ├── pdf/                 # PDF manipulation and creation
-│   ├── pptx/                # PowerPoint creation and editing
-│   ├── skill-creator/       # Guide for creating new skills
-│   └── slack-gif-creator/   # Animated GIFs for Slack
-├── README.md
-└── THIRD_PARTY_NOTICES.md
-```
+| Skill | Description |
+|-------|-------------|
+| **code-documenter** | Generate product-focused documentation from an existing codebase |
+| **claude-md-improver** | Audit and improve CLAUDE.md files in repositories |
+| **skill-creator** | Guide for creating and packaging new Claude Code skills |
 
 ## Installation
 
@@ -53,7 +27,7 @@ salient-skills/
 Register the marketplace and install:
 ```
 /plugin marketplace add aldinsmoresalient/salient-skills
-/plugin install default-skills@salient-skills
+/plugin install salient-product-skills
 ```
 
 ### Claude Code (direct)
@@ -68,7 +42,7 @@ Or test locally during development:
 claude --plugin-dir ./salient-skills
 ```
 
-After installing, skills are auto-discovered from `./skills/`. Use them by mentioning them directly (e.g. `docs-sync` or `claude-md-improver`).
+After installing, skills are auto-discovered from `./skills/`. Use them by describing the task — Claude matches your request to the right skill automatically.
 
 ### Claude.ai
 
@@ -77,6 +51,23 @@ These example skills are available to paid plans in Claude.ai. See [Using skills
 ### Claude API
 
 Use Anthropic's pre-built skills or upload custom skills via the API. See the [Skills API Quickstart](https://docs.claude.com/en/api/skills-guide#creating-a-skill).
+
+## Plugin Structure
+
+```
+salient-skills/
+├── .claude-plugin/
+│   └── plugin.json              # Plugin manifest
+├── skills/
+│   ├── brand-design/            # Salient brand identity and guidelines
+│   ├── claude-md-improver/      # CLAUDE.md auditing and improvement
+│   ├── code-documenter/         # Product-focused documentation generation
+│   ├── frontend-design/         # Production-grade web interfaces
+│   ├── skill-creator/           # Skill authoring guide
+│   └── slack-gif-creator/       # Animated GIFs for Slack
+├── README.md
+└── THIRD_PARTY_NOTICES.md
+```
 
 ## Creating a Skill
 
@@ -99,10 +90,17 @@ The frontmatter requires two fields:
 
 For details, see [How to create custom skills](https://support.claude.com/en/articles/12512198-creating-custom-skills).
 
+## Learn More
+
+- [What are skills?](https://support.claude.com/en/articles/12512176-what-are-skills)
+- [Using skills in Claude](https://support.claude.com/en/articles/12512180-using-skills-in-claude)
+- [How to create custom skills](https://support.claude.com/en/articles/12512198-creating-custom-skills)
+- [Equipping agents for the real world with Agent Skills](https://anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills)
+
 ## Disclaimer
 
 **These skills are provided for demonstration and educational purposes only.** Implementations and behaviors may differ from what is shown. Test thoroughly in your own environment before relying on them for critical tasks.
 
 ## License
 
-MIT. Some skills (pdf, pptx) are source-available under their own license terms — see individual `LICENSE.txt` files.
+MIT. Some skills include their own license terms — see individual `LICENSE.txt` files.

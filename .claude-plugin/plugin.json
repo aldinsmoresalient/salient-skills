@@ -1,7 +1,7 @@
 {
-  "name": "default-skills",
-  "version": "1.0.0",
-  "description": "Claude Code plugin with skills for doc sync, CLAUDE.md improvement, skill creation, design, document generation, and Slack GIF creation",
+  "name": "salient-product-skills",
+  "version": "1.1.0",
+  "description": "Design, document, and create — skills for brand design, frontend development, product documentation, Slack GIFs, and CLAUDE.md improvement.",
   "author": {
     "name": "Alejandro Dinsmore",
     "email": "alejandrodinsmore@gmail.com",
@@ -13,11 +13,12 @@
   "keywords": [
     "skills",
     "claude-code",
-    "docs-sync",
     "design",
-    "pdf",
-    "pptx",
+    "brand",
+    "frontend",
+    "documentation",
     "slack-gif",
-    "claude-md"
+    "claude-md",
+    "visual-design"
   ]
 }
